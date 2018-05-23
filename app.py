@@ -35,6 +35,8 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
+    predict = ""
+    s = ""
     if request.method == "POST":
         print(request.form)
         searchTerms = request.form['searchTerms']
@@ -43,8 +45,22 @@ def index():
         predicted = word_to_predict(searchTerms)
         s = int(predicted)
         print(s)
-        return render_template('index.html', predict = s)
-    # return render_template('index.html')
+    return render_template('index.html', predict = s)
+    #return render_template('index.html')
+
+
+@app.route("/data/")
+def data():
+    return render_template("data.html")
+
+@app.route("/methodology/")
+def methodology():
+    return render_template("GuessGame.html")
+
+@app.route("/home/")
+def home():
+    return render_template("index.html")    
+
 
 @app.route('/test')
 def testoutput():
@@ -63,4 +79,4 @@ def one():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5001)
