@@ -41,12 +41,11 @@ def index():
         print(request.form)
         searchTerms = request.form['searchTerms']
         from Hee_final import word_to_predict
-        # sentence = "The food is awful, i would no recommend this place. Decor is grim and service is terrible. Do not come back"
         predicted = word_to_predict(searchTerms)
         s = int(predicted)
         print(s)
     return render_template('index.html', predict = s)
-    #return render_template('index.html')
+    
 
 
 @app.route("/data/")
@@ -55,7 +54,7 @@ def data():
 
 @app.route("/methodology/")
 def methodology():
-    return render_template("GuessGame.html")
+    return render_template("Method.html")
 
 @app.route("/home/")
 def home():

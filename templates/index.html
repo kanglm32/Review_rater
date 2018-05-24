@@ -42,9 +42,9 @@
     padding: 20px 0;
     margin: 0;
     margin-bottom: 20px;
-    font-size: 24px;
+    font-size: 20px;
     color: #333;
-    text-align: left;
+    text-align: center;
     width:80%;
   }
   
@@ -53,21 +53,24 @@
     color: #333;
     text-align: left;
   }
+
+  h5 {
+    font-size: 14px;
+    color: #333;
+    text-align: left;
+  }
   
   a {
-    color: white; 
+    color: #333; 
     font-family: Georgia, "Times New Roman", Times, serif;
     font-size: 16px;
     text-align: center;
   }
   
   button {
-    background-color: #8B0F0F;
+    background-color: powderblue;
   }
   
-  .data {
-    color: #8B0F0F;
-  }
   /* Selecting elements by class */
   .container {
     margin: 0 auto;
@@ -93,6 +96,15 @@
     margin-right: 20px;
     margin-bottom: 20px;
   }
+
+  
+  .form-control {
+    width: 60%;
+}
+
+.form-control-rating {
+    width:20%;
+}
   </style>
 <body>
   <!--Navbar-->
@@ -102,14 +114,7 @@
       <button class="navbar-header"><a href="/home">Home</a></button>
       
       <div class="btn-group navbar-right">
-          <button class="navbar-header" 
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="">Methodology</a> 
-          </button>
-          <ul class="dropdown-menu">
-            <li><a href="/Method1">#1 </a></li>
-            
-          </ul>  
-          
+          <button class="navbar-header"><a href="/Method">Methodology</a></button>
           <button class="navbar-header"><a href="/data">Data</a></button>   
           
       </div>  
@@ -117,39 +122,29 @@
   </nav>
   
   <div class="container">
-
     <br>
-    <h1>Improving the Yelp Review Experience by Stardardizing Reviewer Sentiment</h1>
+    
     <img id="mainpicture" src="http://cdn.onlyinyourstate.com/wp-content/uploads/2016/07/s7-700x241.jpg">
-    <!--    https://rfsdelivers.com/media/zoo/images/03-02-yelp_0414657f68898d05af8085822784b7db.jpg"> -->
-    <br>
-    <form method="POST" action="/">
-        <div class="col-lg-8" style="margin-left:17%">
-                <div class="form-group">
-                  <input type="text" name="searchTerms" class="form-control" id="search" aria-describedby="search" placeholder="Enter your review">
-                  <!--<small id="smallsearch" class="form-text text-muted">Enter your search terms here. Separate with a comma, e.g. Tart, Sweet, Refreshing....</small> -->
-                
-                <!-- <span class="form-group-btn"> -->
-                    <button id="submit" type="submit" class="btn btn-secondary">Submit</button>
-                <!-- </span> -->
-              </div>
+    <h1>Predicting your review rating based on the model which trained with the Yelp data </h1>
+
+    <form method="POST" action="">
+
+        <div class="input-group">
+           <input type="text" name="searchTerms" class="form-control" id="search" aria-describedby="search" placeholder="Enter your review">
+           <input class="form-control-rating"  placeholder="Enter {1, 2, 3, 4, 5}">
+           <span class="input-group-btn">
+                <button id="submit" type="submit" class="btn"><a>Submit</a></button>
+            </span>
         </div>
     </form>
-
-              <div class="row">
-                    <div class="col-lg-12">
-                        <h5 align = "center">We predict your review to be:</h5><h5 align="center" id="result">{{ predict }}</h5>
-                    </div>
-                </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-12">
+          <h5>We predict your rating to be: {{ predict }}</h5>
+      </div>
+    </div>
             
   </div>   
 </body>
-<script>
-  var $forfeit = d3
-  .select('#forfeit')
-  // .attr('style','margin-top:1em;')
-  .on('click',function(){
-      console.log("hi")
-  })
-  </script>
+
 </html>

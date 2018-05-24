@@ -56,31 +56,19 @@
     text-align: left;
   }
   
-  h4 {
-    background: linear-gradient(to right, #CE0909 20%, #FFF 20%) bottom .5em left .8em no-repeat, linear-gradient(#323A45, #323A45);
-    background-size: 200% 1px, 100% 100%;
-    padding: .5em;
-    color: #FDFFFE;
-    font-size: 20px;
-    font-family: sans-serif;
-    font-weight: lighter;
-  }
   
   
   a {
-    color: white; 
+    color: #333; 
     font-family: Georgia, "Times New Roman", Times, serif;
     font-size: 16px;
     text-align: center;
   }
   
   button {
-    background-color: #8B0F0F;
+    background-color: powderblue;
   }
   
-  .data {
-    color: #8B0F0F;
-  }
   /* Selecting elements by class */
   .container {
     margin: 0 auto;
@@ -111,21 +99,16 @@
   <!--Navbar-->
 
   <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-      <button class="navbar-header"><a href="/home">Home</a></button>
-      
-      <div class="btn-group navbar-right">
-          <button class="navbar-header" 
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="">Methodology</a> 
-          </button>
-          <ul class="dropdown-menu">
-            <li><a href="/Method1">#1 </a></li>
+          <div class="container-fluid">
+            <button class="navbar-header"><a href="/home">Home</a></button>
             
-          </ul>  
-          
-          <button class="navbar-header"><a href="/data">Data</a></button>   
-          
-      </div>  
+            <div class="btn-group navbar-right">
+                <button class="navbar-header"><a href="/Method">Methodology</a></button>
+                <button class="navbar-header"><a href="/data">Data</a></button>   
+                
+            </div>  
+          </div><!-- /.container-fluid -->
+        </nav>
     </div><!-- /.container-fluid -->
   </nav>
   <div class="container">
