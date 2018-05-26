@@ -125,22 +125,30 @@
     <br>
     
     <img id="mainpicture" src="http://cdn.onlyinyourstate.com/wp-content/uploads/2016/07/s7-700x241.jpg">
-    <h1>Predicting your review rating based on the model which trained with the Yelp data </h1>
+    <h1 align = "center" >Predicting your review rating based on the model which trained with the Yelp data </h1>
 
     <form method="POST" action="">
 
         <div class="input-group">
-           <input type="text" name="searchTerms" class="form-control" id="search" aria-describedby="search" placeholder="Enter your review">
-           <input class="form-control-rating"  placeholder="Enter {1, 2, 3, 4, 5}">
+           <!-- <input type="text" name="searchTerms" class="form-control" id="search" aria-describedby="search" placeholder="Enter your review"> -->
+           <textarea rows="5" cols="50" type="text" name="searchTerms" class="form-control" id="search" aria-describedby="search" placeholder="Enter your review"></textarea>
+           <!-- <input class="form-control-rating"  placeholder="Enter {1, 2, 3, 4, 5}">
            <span class="input-group-btn">
                 <button id="submit" type="submit" class="btn"><a>Submit</a></button>
-            </span>
+            </span> -->
         </div>
+        <div align = "left">
+        <input class="form-control-rating" type = "number" name ="humanRating" placeholder="Your review (1-5)">
+        <span class="input-group-btn">
+             <button id="submit" type="submit" class="btn"><a>Submit</a></button>
+         </span>
+         </div>
     </form>
     <br>
     <div class="row">
-      <div class="col-lg-12">
-          <h5>We predict your rating to be: {{ predict }}</h5>
+      <div align = "center" class="col-lg-12">
+          <h5 align = "center"> We predict your rating to be: {{ predict }}</h5>
+          <h5 align = "center"> Your review: {{ review_term }}</h5>
       </div>
     </div>
             
