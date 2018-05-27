@@ -1,5 +1,4 @@
 import os
-
 import pandas as pd
 import numpy as np
 from flask_cors import CORS
@@ -30,6 +29,7 @@ class Reviews(Base):
     record_id = Column(Integer, primary_key=True)
     review = Column(String)
     human_rating = Column(Integer)
+    machine_rating = Column(Integer)
 
 # Use a Session to test the Review class
 
@@ -47,7 +47,6 @@ session = Session(bind=engine)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    # predict = ""
     s = ""
     searchTerms = ""
     if request.method == "POST":
@@ -58,7 +57,7 @@ def index():
         predicted = word_to_predict(searchTerms)
         s = int(predicted)
         print(s)
-        session.add(Reviews(review=searchTerms, human_rating = human_rate))
+        session.add(Reviews(review=searchTerms, human_rating = human_rate, machine_rating = s))
         session.commit()
     return render_template('index.html', predict = s, review_term = searchTerms)
     
@@ -75,15 +74,6 @@ def methodology():
 @app.route("/home/")
 def home():
     return render_template("index.html")    
-
-
-# @app.route('/test')
-# def testoutput():
-#     from Hee_final import word_to_predict
-#     sentence = "The food is awful, i would no recommend this place. Decor is grim and service is terrible. Do not come back"
-#     predicted = word_to_predict(sentence)
-#     s = int(predicted)
-#     return jsonify(s)
 
 @app.route('/collection')
 def sqlquery():
