@@ -30,6 +30,7 @@ class Reviews(Base):
     review = Column(String)
     human_rating = Column(Integer)
     machine_rating = Column(Integer)
+    deviations = Column(Integer)
 
 # Use a Session to test the Review class
 
@@ -51,13 +52,14 @@ def index():
     searchTerms = ""
     if request.method == "POST":
         print(request.form)
-        human_rate = request.form['humanRating']
+        human_rate = int(request.form['humanRating'])
         searchTerms = request.form['searchTerms']
         from Hee_final import word_to_predict
         predicted = word_to_predict(searchTerms)
         s = int(predicted)
+        deviation = abs(human_rate - s)
         print(s)
-        session.add(Reviews(review=searchTerms, human_rating = human_rate, machine_rating = s))
+        session.add(Reviews(review=searchTerms, human_rating = human_rate, machine_rating = s, deviations = deviation))
         session.commit()
     return render_template('index.html', predict = s, review_term = searchTerms)
     
@@ -77,7 +79,7 @@ def home():
 
 @app.route('/collection')
 def sqlquery():
-    x = session.query(Reviews.record_id, Reviews.review, Reviews.human_rating).all()
+    x = session.query(Reviews.record_id, Reviews.review, Reviews.human_rating, Reviews.machine_rating, Reviews.deviations).all()
     return jsonify(x)
 
 
