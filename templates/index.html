@@ -6,153 +6,93 @@
   <title>Yelp Review Analysis</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-   <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.3/d3.min.js"></script>
+
+    <link rel="stylesheet" href="../static/css/style.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
-   
+    
 </head>
 
-<style>
-    /* Styling for HTML elements */
-  body {
-    padding: 0;
-    margin: 0;
-    font-family: Georgia, "Times New Roman", Times, serif;
-    font-size: 18px;
-    line-height: 150%;
-    color: #333;
-    background: #efeee7;
-  }
-  
-  header {
-    background: #333;
-  }
-  
-  p {
-    padding: 1%;
-    margin: 2%;
-    font-family: sans-serif;    /*Georgia, "Times New Roman", Times, serif; */
-    font-size: 16px;
-    line-height: 150%;
-    color: #333;
-    text-align: left;
-  }
-  
-  h1 {
-    padding: 20px 0;
-    margin: 0;
-    margin-bottom: 20px;
-    font-size: 20px;
-    color: #333;
-    text-align: center;
-    width:80%;
-  }
-  
-  h3 {
-    font-size: 18px;
-    color: #333;
-    text-align: left;
-  }
-
-  h5 {
-    font-size: 14px;
-    color: #333;
-    text-align: left;
-  }
-  
-  a {
-    color: #333; 
-    font-family: Georgia, "Times New Roman", Times, serif;
-    font-size: 16px;
-    text-align: center;
-  }
-  
-  button {
-    background-color: powderblue;
-  }
-  
-  /* Selecting elements by class */
-  .container {
-    margin: 0 auto;
-   /* position: relative;*/
-    text-align: center;
-  }
-  
-  .navbar {
-    padding: 0px;
-    background: #333; /*#FCFCFC*/
-  }
-  
-  /* Getting rid of the default link styles here */
-  .navbar li a {
-    color: black;
-    text-decoration: none;
-  }
-  
-  #mainpicture {
-    float:center;
-    height: 250px;
-    width: 100%;
-    margin-right: 20px;
-    margin-bottom: 20px;
-  }
-
-  
-  .form-control {
-    width: 60%;
-}
-
-.form-control-rating {
-    width:20%;
-}
-  </style>
 <body>
   <!--Navbar-->
 
-  <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-      <button class="navbar-header"><a href="/home">Home</a></button>
-      
-      <div class="btn-group navbar-right">
-          <button class="navbar-header"><a href="/Method">Methodology</a></button>
-          <button class="navbar-header"><a href="/data">Data</a></button>   
-          
-      </div>  
-    </div><!-- /.container-fluid -->
-  </nav>
-  
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="/methodology">Methodology</a>
+          <a class="nav-item nav-link" href="/data">Data</a>
+        </div>
+      </div>
+    </nav>
+
   <div class="container">
     <br>
     
-    <img id="mainpicture" src="http://cdn.onlyinyourstate.com/wp-content/uploads/2016/07/s7-700x241.jpg">
-    <h1 align = "center" >Predicting your review rating based on the model which trained with the Yelp data </h1>
+     
+    <img  id="mainpicture" src="https://dataxboost.files.wordpress.com/2018/03/nlp.jpg?w=880&h=312&crop=1"> 
+    <br>
+    <h3>Question: Are star ratings representitive of their respective reviews?</h3>
+    <br>
+    <h5><strong>What does this review look like to you?</strong></h5>
+    <br>
+    <h5><i>This bar is part of the Air Canada Centre and has an amazing Ambience. With large screens set up around the restuarant - you can really enjoy whatever game is going on. I had a portobello panini that was fantastic to say the least. However, the side salad really stole the show and I wish I could've ordered it as my main! My only advice is if you go here ORDER THE SIDE SALAD! It is killer!</i></h5>
+    <br>
+    <h5><strong>I would have skipped this place if I only looked at stars!</strong></h5>
+    <br>
+    <h3> Predicting your review rating based on the model which trained with the Yelp data </h3>  
 
     <form method="POST" action="">
+      <!-- <div class="col-lg-8" style="margin-left:17%"> -->
 
         <div class="input-group">
-           <!-- <input type="text" name="searchTerms" class="form-control" id="search" aria-describedby="search" placeholder="Enter your review"> -->
            <textarea rows="5" cols="50" type="text" name="searchTerms" class="form-control" id="search" aria-describedby="search" placeholder="Enter your review"></textarea>
-           <!-- <input class="form-control-rating"  placeholder="Enter {1, 2, 3, 4, 5}">
-           <span class="input-group-btn">
-                <button id="submit" type="submit" class="btn"><a>Submit</a></button>
-            </span> -->
         </div>
         <div align = "left">
-        <input class="form-control-rating" type = "number" name ="humanRating" placeholder="Your review (1-5)">
-        <span class="input-group-btn">
-             <button id="submit" type="submit" class="btn"><a>Submit</a></button>
-         </span>
-         </div>
+          <input class="form-control-rating" type = "number" name ="humanRating" min="1" max="5" placeholder="Your review (1-5)">
+          
+          <span class="input-group-btn">
+             <button id="submit"  type="submit" class="btn"><a>Submit</a></button>
+          </span>
+          <br>
+          <div class="row">
+            <br>
+            <div align = "center" class="col-lg-12">
+            <br>
+                <h5 align = "center"> Your review: {{ review_term }}</h5>
+                <h5 align = "center"> We predict your rating to be: {{ predict }}</h5>
+                <h5 align = "center"> Our current accuracy is: {{ accuracy }} %</h5>
+            </div>
+          </div>
+          <h6>Choose a view below:</h6>
+          <div align = "left" class="input-group">
+          <br>
+            <select id="selectModel" class="form-control" width = "100%" title="Choose a model...">
+            <option>Choose a View...</option>
+            <option>Ratings View</option>
+            <option>Deviations View</option>
+          </select>
+          </div>
+
+        </div>
+      <!-- </div> -->
     </form>
+
     <br>
+
     <div class="row">
-      <div align = "center" class="col-lg-12">
-          <h5 align = "center"> We predict your rating to be: {{ predict }}</h5>
-          <h5 align = "center"> Your review: {{ review_term }}</h5>
+            <div id="plot" alt="ML" style="margin-left:0%; width: 100%;"></div>
       </div>
-    </div>
-            
-  </div>   
+  </div>  
+    <br>
+
+      <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+      <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 </body>
 
 </html>

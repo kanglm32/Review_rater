@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Yelp Review Analysis</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../static/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
+    <style>        
+            .parallax{
+              background-attachment: fixed;
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+            }
+        
+            .topnav li 
+            {
+                display: inline-block;
+                margin: 40px 0;
+            }
+        
+            .topnav a:hover {
+            background: darkblue;
+            }
+            
+            .topnav li a
+            {
+            margin: 8px;
+            color:#eee;
+            padding: 18px 20px;
+            background: gray;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            }
+        </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="/">Home</a>
+            <a class="nav-item nav-link" href="/methodology">Methodology</a>
+            <a class="nav-item nav-link" href="/data">Data</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="hero">
+            
+        <div class="container">
+        <div class="row">
+            <div class="inner col-md-12">
+            <h2 style="font-size:80px" align="center" >Models</h2>
+            </div>
+        </div>
+        </div>
+        <div class="hero-back parallax"></div>
+    </div>
+    <br>
+    <div class="container">
+        <ul class = "topnav"  id = "modelsnav" style = "width: 100%">
+  
+            <li><a href = "/data/data_clean" style="text-decoration:none">Data</a></li>
+            <li><a href = "/data/neural_n" style="text-decoration:none">Neural Network</a></li>
+        <li><a href = "/data/naive_b" style="text-decoration:none">Naive Bayes</a></li>
+        </ul>
+    </div>
+    
+    <div class="container">
+        <br>
+        <h3>Source of Data</h3>
+        <p> The data used in this project was downloaded from 
+           <b><a class= "data" href="https://www.kaggle.com/yelp-dataset/yelp-dataset/data">Kaggle Yelp Dataset</a></b>
+            (yelp_business.csv and yelp_review.csv). </p>
+             
+         <h3>Data Screening and selection</h3>
+         <p>The data set provided with Yelp was included 7 files and 5.53 GB of data. For the purpose of our project we 
+           limited our data to resturants, bar and other food related categories. Also we slice our data based on the users
+            who wrote 50 to 100 reviews. </p>
+    
+         <table>
+            <tr>
+                <th>Column  </th>
+                <th>  Entire dataset  </th>
+                <th>  Resturants/ bars/ food  </th>
+                <th>  Users with 50 to 100 reviews</th>
+            </tr>
+            <tr>
+                <td>Businesesses</td>
+                <td>174,567</td>
+                <td>72,103</td>
+                <td>50,642</td>
+            </tr>
+            <tr>
+                <td>users</td>
+                <td>1,326,101</td>
+                <td>960,561</td>
+                <td>4,676</td>
+            </tr>
+            <tr>
+                <td>Reviews</td>
+                <td>5,261,668</td>
+                <td>3,636,641</td>
+                <td>323,100</td>
+            </tr>
+            <tr>
+                <td>Files</td>
+                <td>7</td>
+                <td>2</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>Size</td>
+                <td>5.53 GB</td>
+                <td>3.82 GB</td>
+                <td>273 MB</td>
+            </tr>
+        </table>
+    
+        
+        <p>We narrow the dataset based on user review's number. because as users write more reviews, the distribution of star ratings
+          given become more and more normal. Below is the bar chart of distribution of rating for the users who wrote 50 to 100 reviews.</p>
+        <p><img src="../static/img/export_filtered_reviews_50_100.PNG" alt="review 50_100" height="200px" width = "200px" ></p>
+        <p align=>Done by our great friend and teammate Alex "Dim Sum" Lam</p>
+
+    </div>
+</body>
+</html>

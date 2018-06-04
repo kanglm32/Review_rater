@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Yelp Review Analysis</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../static/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
+    
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="/">Home</a>
+            <a class="nav-item nav-link" href="/methodology">Methodology</a>
+            <a class="nav-item nav-link" href="/data">Data</a>
+          </div>
+        </div>
+      </nav>
+
+    
+  <div class="container">
+    <br>
+    <h3>Source of Data</h3>
+    <p> The data used in this project was downloaded from 
+       <b><a class= "data" href="https://www.kaggle.com/yelp-dataset/yelp-dataset/data">Kaggle Yelp Dataset</a></b>
+        (yelp_business.csv and yelp_review.csv). </p>
+         
+     <h3>Data Screening and selection</h3>
+     <p>The data set provided with Yelp was included 7 files and 5.53 GB of data. For the purpose of our project we 
+       limited our data to resturants, bar and other food related categories. Also we slice our data based on the users
+        who wrote 50 to 100 reviews. </p>
+
+     <table>
+        <tr>
+            <th>Column  </th>
+            <th>  Entire dataset  </th>
+            <th>  Resturants/ bars/ food  </th>
+            <th>  Users with 50 to 100 reviews</th>
+        </tr>
+        <tr>
+            <td>Businesesses</td>
+            <td>174,567</td>
+            <td>72,103</td>
+            <td>50,642</td>
+        </tr>
+        <tr>
+            <td>users</td>
+            <td>1,326,101</td>
+            <td>960,561</td>
+            <td>4,676</td>
+        </tr>
+        <tr>
+            <td>Reviews</td>
+            <td>5,261,668</td>
+            <td>3,636,641</td>
+            <td>323,100</td>
+        </tr>
+        <tr>
+            <td>Files</td>
+            <td>7</td>
+            <td>2</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>Size</td>
+            <td>5.53 GB</td>
+            <td>3.82 GB</td>
+            <td>273 MB</td>
+        </tr>
+    </table>
+
+    
+    <p>We narrow the dataset based on user review's number. because as users write more reviews, the distribution of star ratings
+      given become more and more normal. Below is the bar chart of distribution of rating for the users who wrote 50 to 100 reviews.</p>
+    <p><img src="../static/img/export_filtered_reviews_50_100.PNG" alt="review 50_100" height="200px" width = "200px" ></p>
+  
+  
+    <strong><h3>Naive Bayes Model</h3></strong>  
+    <p>Since We have thousands of data points and quite a few variables in our training data set, the first model we used is
+     ‘Naive Bayes' .This model is easy to build and also known to outperform even highly sophisticated classification methods. 
+     Naive Bayes can be extremely fast relative to other classification algorithms and it works on Bayes theorem 
+     of probability to predict the class of unknown data set.</p>
+     <p>Below you can find the program we run to make a Naive Bayes model for 70,000 different reviews. </p>
+
+     <div class="row">
+        <figure>
+            <iframe width = "1100px" hight="700px" src="../NaiveBayes_Yelp_30K_BM.html"></iframe>
+        </figure>
+      </div>
+
+    <p>The Accuracy of model at predicting reviews was: 43.9%</p>
+   
+    <br>
+     <strong><h3>Natural Network Model</h3></strong>
+    <p>We used a Neural Network Model and tokenized text reviews to classify them in a 1-5 rating.
+       Traditional Neural Networks use each instance of information fed in order to produce an output:</p>
+       <img id="datapicture" src="http://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-unrolled.png">
+    <p>This is an issue as humans do not rate a review on a per word basis. We use context in our sentences to
+       form opinions and sentiment. To compensate for that, we added in a LSTM layer. Long Short-Term Memory 
+       networks – usually just called “LSTMs” – are a special kind of RNN, capable of learning long-term dependencies.</p>   
+       
+       <img id="datapicture" src="http://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-chain.png">
+    <p>The core line (black horizontal top line) uses information selected from previous layers and uses that “context”
+       to give a classification output (ht). </p>
+       <strong><h3>Results</h3></strong>
+       <p>The Accuracy of model at predicting reviews was: 55.6% with greater than 90% being accurate or off by 1 rating</p>
+
+       <div class = "row">
+       <img src="../static/img/Deviations.png" alt="review 50_100" height="50%" width = "50%">
+       <img src="../static/img/Human_v_machine.png" alt="review 50_100" height="50%" width = "50%">
+       </div>
+
+           
+     
+        
+  </div>
+  
+</body>
+</html>
+      

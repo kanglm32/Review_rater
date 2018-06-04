@@ -1,0 +1,131 @@
+/*
+ First External CSS Stylesheet
+ */
+
+/* Styling for HTML elements */
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 18px;
+  line-height: 150%;
+  color: #333;
+  background: #efeee7;
+}
+
+header {
+  background: #333;
+}
+
+p {
+  padding: 1%;
+  margin: 2%;
+  font-family: sans-serif;    /*Georgia, "Times New Roman", Times, serif; */
+  font-size: 16px;
+  line-height: 150%;
+  color: #333;
+  text-align: left;
+}
+
+h1 {
+  
+  font-size: 20px;
+  color: #333;
+  text-align: center;
+  border-bottom:1px solid powderblue;
+}
+
+h3 {
+  font-size: 18px;
+  color: #333;
+  text-align: left;
+  border-bottom:1px solid white;
+}
+
+h5 {
+  font-size: 14px;
+  color: #333;
+  text-align: left;
+}
+
+a {
+  color: #333; 
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 16px;
+  text-align: center;
+}
+
+
+button {
+  background-color: powderblue;
+}
+
+/* Selecting elements by class */
+.container {
+  margin: 0 auto;
+ /* position: relative;*/
+  text-align: center;
+}
+
+.navbar {
+  padding: 0px;
+  background: #333; /*#FCFCFC*/
+}
+
+/* Getting rid of the default link styles here */
+.navbar li a {
+  color: black;
+  text-decoration: none;
+}
+
+#mainpicture {
+  float:center;
+  height: 250px;
+  width: 100%;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+#datapicture {
+  float:center;
+  height: 170px;
+  width: 50%;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+
+.form-control {
+  width: 60%;
+}
+
+.form-control-rating {
+  width:20%;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  
+  width: 80%;
+  align-self: center
+  }
+
+  th {
+  border: 2px solid #333;
+  text-align: center;
+  padding: 8px;
+  font: 16px;
+  background-color: powderblue;
+
+  }
+
+  td{
+  border: 2px solid #333;
+  text-align: left;
+  padding: 8px;
+  }
+
+  tr:nth-child(even) {
+  background-color: #dddddd;
+  }

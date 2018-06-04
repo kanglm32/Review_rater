@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Yelp Review Analysis</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../static/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
+    <style>        
+            .parallax{
+              background-attachment: fixed;
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+            }
+        
+            .topnav li 
+            {
+                display: inline-block;
+                margin: 40px 0;
+            }
+        
+            .topnav a:hover {
+            background: darkblue;
+            }
+            
+            .topnav li a
+            {
+            margin: 8px;
+            color:#eee;
+            padding: 18px 20px;
+            background: gray;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            }
+        </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="/">Home</a>
+            <a class="nav-item nav-link" href="/methodology">Methodology</a>
+            <a class="nav-item nav-link" href="/data">Data</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="hero">
+            
+        <div class="container">
+        <div class="row">
+            <div class="inner col-md-12">
+            <h2 style="font-size:80px" align="center" >Models</h2>
+            </div>
+        </div>
+        </div>
+        <div class="hero-back parallax"></div>
+    </div>
+    <br>
+    <div class="container">
+        <!-- <div id="nav-wrapper" class = "models-nav"> -->
+        <ul class = "topnav"  id = "modelsnav" style = "width: 100%">
+            <!-- <li class = "icon text-left">
+                <a href = "javascipt:void(0);" onclick = "myFunction()"> "More..."
+                    <span class = "CSiconz text-18 fright" style = "padding-right: 20px;">.</span>
+                </a></li> -->
+                <li><a href = "/data/data_clean" style="text-decoration:none">Data</a></li>
+                <li><a href = "/data/neural_n" style="text-decoration:none">Neural Network</a></li>
+            <li><a href = "/data/naive_b" style="text-decoration:none">Naive Bayes</a></li>
+        </ul>
+    </div>
+    
+    <div class="container">
+        <br>
+
+        <strong><h3>Natural Network Model</h3></strong>
+        <p>We used a Neural Network Model and tokenized text reviews to classify them in a 1-5 rating.
+           Traditional Neural Networks use each instance of information fed in order to produce an output:</p>
+           <img id="datapicture" src="http://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-unrolled.png">
+        <p>This is an issue as humans do not rate a review on a per word basis. We use context in our sentences to
+           form opinions and sentiment. To compensate for that, we added in a LSTM layer. Long Short-Term Memory 
+           networks – usually just called “LSTMs” – are a special kind of RNN, capable of learning long-term dependencies.</p>   
+           
+           <img id="datapicture" src="http://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-chain.png">
+        <p>The core line (black horizontal top line) uses information selected from previous layers and uses that “context”
+           to give a classification output (ht). </p>
+           <strong><h3>Results</h3></strong>
+           <p>The Accuracy of model at predicting reviews was: 55.6% with greater than 90% being accurate or off by 1 rating</p>
+    
+           <div class = "row">
+           <img src="../static/img/Deviations.png" alt="review 50_100" height="50%" width = "50%">
+           <img src="../static/img/Human_v_machine.png" alt="review 50_100" height="50%" width = "50%">
+           </div>
+    </div>
+</body>
+</html>
